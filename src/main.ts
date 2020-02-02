@@ -1,31 +1,36 @@
 import './polyfills';
 
-import { enableProdMode } from '@angular/core';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import {HttpClientModule} from '@angular/common/http';
+import {NgModule} from '@angular/core';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatNativeDateModule} from '@angular/material/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MaterialModule} from './app/material-module';
 
-import { AppModule } from './app/app.module';
+// this is the export class from the app's typescript file
+import {AppComponent} from './app/app';
+
+@NgModule({
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    HttpClientModule,
+    MaterialModule,
+    MatNativeDateModule,
+    ReactiveFormsModule,
+  ],
+  entryComponents: [AppComponent],
+  declarations: [AppComponent],
+  bootstrap: [AppComponent],
+  providers: []
+})
+export class AppModule {}
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-platformBrowserDynamic().bootstrapModule(AppModule).then(ref => {
-  // Ensure Angular destroys itself on hot reloads.
-  if (window['ngRef']) {
-    window['ngRef'].destroy();
-  }
-  window['ngRef'] = ref;
-
-  // Otherwise, log the boot error
-}).catch(err => console.error(err));
+platformBrowserDynamic().bootstrapModule(AppModule)
+  .catch(err => console.error(err));

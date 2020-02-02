@@ -1,0 +1,79 @@
+<!-- this is the configuration card for the slider -->
+<mat-card>
+  <mat-card-content>
+    <h2 class="h2"> Slider configuration</h2>
+
+    <!-- these are the 4 input fields -->
+    <section class="section">
+      <mat-form-field class="margin">
+        <input matInput type="number" placeholder="Value" [(ngModel)]="value">
+      </mat-form-field>
+      <mat-form-field class="margin">
+        <input matInput type="number" placeholder="Min value" [(ngModel)]="min">
+      </mat-form-field>
+      <mat-form-field class="margin">
+        <input matInput type="number" placeholder="Max value" [(ngModel)]="max">
+      </mat-form-field>
+      <mat-form-field class="margin">
+        <input matInput type="number" placeholder="Step size" [(ngModel)]="step">
+      </mat-form-field>
+    </section>
+
+    <!-- show tick & auto ticks checkboxes -->
+    <section class="section">
+      <mat-checkbox class="margin" [(ngModel)]="showTicks">Show ticks</mat-checkbox>
+      <mat-checkbox class="margin" [(ngModel)]="autoTicks" *ngIf="showTicks">
+        Auto ticks
+      </mat-checkbox>
+      <mat-form-field class="margin" *ngIf="showTicks && !autoTicks">
+        <input matInput type="number" placeholder="Tick interval" [(ngModel)]="tickInterval">
+      </mat-form-field>
+    </section>
+
+
+    <!-- thumb label checkboxes -->
+    <section class="section">
+      <mat-checkbox class="margin" [(ngModel)]="thumbLabel">Show thumb label</mat-checkbox>
+    </section>
+
+    <!-- vertical and inverted checkboxes -->
+    <section class="section">
+      <mat-checkbox class="margin" [(ngModel)]="vertical">Vertical</mat-checkbox>
+      <mat-checkbox class="margin" [(ngModel)]="invert">Inverted</mat-checkbox>
+    </section>
+
+    <!-- disabled checkbox -->
+    <section class="section">
+      <mat-checkbox class="margin" [(ngModel)]="disabled">Disabled</mat-checkbox>
+    </section>
+
+  </mat-card-content>
+</mat-card>
+<!-- end of config card -->
+
+
+
+
+
+
+<!-- make a small space between the configurator and the result -->
+<section class="margin"></section>
+
+<mat-card class="result">
+  <mat-card-content>
+    <h2>Result</h2>
+
+    <mat-slider
+        class="margin"
+        [disabled]="disabled"
+        [invert]="invert"
+        [max]="max"
+        [min]="min"
+        [step]="step"
+        [thumbLabel]="thumbLabel"
+        [tickInterval]="tickInterval"
+        [(ngModel)]="value"
+        [vertical]="vertical">
+    </mat-slider>
+  </mat-card-content>
+</mat-card>
